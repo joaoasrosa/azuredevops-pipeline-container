@@ -2,8 +2,7 @@ pool:
   vmImage: 'Ubuntu 16.04'
 variables:
   repoName: 'joaoasrosa/azuredevops-pipeline-container'
-  imageVersion: '1.0.0'
-  imageTag: 'azuredevops-pipeline-container-$(imageVersion).$(build.buildId)'
+  imageTag: '1.0.0.$(build.buildId)'
 steps:
 - checkout: self
   clean: true
