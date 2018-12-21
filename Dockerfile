@@ -39,6 +39,5 @@ RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubunt
 RUN apt-get -y update
 RUN apt-get -y install apt-transport-https ca-certificates curl software-properties-common
 RUN apt-get -y install docker-ce
-RUN apt-get -y install nodejs
-RUN apt-get -y install npm
+RUN apt-get -y install nodejs npm
 RUN npm install -g snyk
