@@ -1,0 +1,33 @@
+pool:
+  vmImage: 'Ubuntu 16.04'
+variables:
+  repoName: 'joaoasrosa/azuredevops-pipeline-container'
+  imageVersion: '1.0.0'
+  imageTag: 'azuredevops-pipeline-container-$(imageVersion).$(build.buildId)'
+steps:
+- checkout: self
+  clean: true
+
+- script: curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && mkdir -p $HOME/bin && export PATH=$PATH:$HOME/bin && mv container-structure-test-linux-amd64 $HOME/bin/container-structure-test
+  displayName: 'Install Container Structure Tests'
+
+- script: docker build -f Dockerfile -t $(repoName):$(imageTag) -t $(repoName):latest .
+  displayName: 'Build Docker Image'
+
+- script: export PATH=$PATH:$HOME/bin && container-structure-test test --image $(repoName):$(imageTag) --config ./command-tests.yaml
+  displayName: 'Run Container Tests'
+
+- script: echo 'This is a placeholder until the tool is choosen!'
+  displayName: 'Scan Docker Image'
+
+- script: docker login -u $(dockerUsername) -p $(dockerPassword)
+  displayName: 'Login to docker'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: docker push $(repoName):$(imageTag)
+  displayName: 'Push Docker Image'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: docker push $(repoName):latest
+  displayName: 'Push Docker Image'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
