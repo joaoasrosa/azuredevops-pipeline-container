@@ -8,7 +8,7 @@ RUN apk add --no-cache \
     && go get github.com/golang/dep/cmd/dep
 
 # container-structure-test default version
-ARG CST_REF=v1.7.0
+ARG CST_REF=v1.6.0
 ENV SOURCE_PATH=/go/src/github.com/GoogleContainerTools/container-structure-test
 
 RUN git clone \
@@ -27,7 +27,7 @@ RUN VERSION=$(git describe --tags || echo "$CST_REF-$(git describe --always)") m
 FROM ubuntu:18.04
 LABEL maintainers="João Rosa <joaoasrosa@gmail.com>"
 
-ENV CST_VERSION=1.7.0
+ENV CST_VERSION=1.6.0
 ENV DOCKER_VERSION=18.09.0
 ENV NODEJS_VERSION=11.5.0
 ENV SNYK_VERSION=1.117.1
