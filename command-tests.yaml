@@ -46,4 +46,4 @@ commandTests:
   - name: "snyk version"
     command: "snyk"
     args: ["--version"]
-    expectedOutput: ["1.118.1\n"]
+    expectedOutput: ["1.118.2\n"]
