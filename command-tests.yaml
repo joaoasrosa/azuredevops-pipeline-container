@@ -34,7 +34,7 @@ commandTests:
   - name: "nodejs installation"
     command: "which"
     args: ["node"]
-    expectedOutput: ["/usr/local/bin/node\n"]
+    expectedOutput: ["/usr/bin/node\n"]
 
 # check that the node binary is the correct version
   - name: "node version"
