@@ -29,7 +29,7 @@ LABEL maintainers="João Rosa <joaoasrosa@gmail.com>"
 
 ENV CST_VERSION=1.6.0
 ENV DOCKER_VERSION=18.09.0
-ENV NODEJS_VERSION=11.5.0
+ENV NODEJS_VERSION=8.10.0
 ENV SNYK_VERSION=1.118.2
 
 COPY --from=cst-builder /container-structure-test /bin/
