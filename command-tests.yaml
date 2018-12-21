@@ -1,0 +1,49 @@
+schemaVersion: "2.0.0"
+
+globalEnvVars:
+  - key: "PATH"
+    value: "/env/bin:$PATH"
+
+commandTests:
+
+# check that the container-structure-test binary is in the correct location
+  - name: "container-structure-test installation"
+    command: "which"
+    args: ["container-structure-test"]
+    expectedOutput: ["/bin/container-structure-test\n"]
+
+# check that the container-structure-test binary is the correct version
+  - name: "container-structure-test version"
+    command: "container-structure-test"
+    args: ["version"]
+    expectedOutput: ["v1.6.0"]
+
+# check that the docker binary is in the correct location
+  - name: "docker installation"
+    command: "which"
+    args: ["docker"]
+    expectedOutput: ["/usr/bin/docker\n"]
+
+# check that the docker binary is the correct version
+  - name: "docker version"
+    command: "docker"
+    args: ["--version"]
+    expectedOutput: ["Docker version 18.09.0, build 4d60db4\n"]
+
+# check that the nodejs binary is in the correct location
+  - name: "nodejs installation"
+    command: "which"
+    args: ["node"]
+    expectedOutput: ["/usr/local/bin/node\n"]
+
+# check that the node binary is the correct version
+  - name: "node version"
+    command: "node"
+    args: ["--version"]
+    expectedOutput: ["v11.5.0\n"]
+
+# check that the snyk binary is the correct version
+  - name: "snyk version"
+    command: "snyk"
+    args: ["--version"]
+    expectedOutput: ["1.117.1\n"]
