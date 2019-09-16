@@ -1,4 +1,4 @@
-FROM golang:1.10.3-alpine3.8 AS cst-builder
+FROM golang:1.11.11-alpine3.8 AS cst-builder
 
 RUN apk add --no-cache \
       gcc~=6.4 \
