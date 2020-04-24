@@ -24,7 +24,7 @@ RUN VERSION=$(git describe --tags || echo "$CST_REF-$(git describe --always)") m
   && cp out/container-structure-test /
 
 # Distro image
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 LABEL maintainers="João Rosa <joaoasrosa@gmail.com>"
 
 ENV CST_VERSION=1.6.0
